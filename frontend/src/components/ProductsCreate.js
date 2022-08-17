@@ -41,6 +41,7 @@ export const ProductsCreate = () => {
             type="number"
             className="form-control"
             placeholder="Price"
+            step=".01"
             onChange={(e) => setPrice(e.target.value)}
           />
           <label>Price</label>
