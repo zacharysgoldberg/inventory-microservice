@@ -1,8 +1,8 @@
 # Inventory-Microservice
 
 ## Design
-
-FastAPI, React, Redis, and Docker
+Simple microservice inventory tracking applicaiton using
+**FastAPI, React, Redis, and Docker**.
 
 ## Getting Started Locally
 
