@@ -3,9 +3,8 @@ from redis_om import get_redis_connection, HashModel
 
 
 redis = get_redis_connection(
-    host="redis-14080.c53.west-us.azure.cloud.redislabs.com",
-    port=14080,
-    password="CflC19i7IqxkcfGcUykRqwE6nHWBnoDt",
+    host="inventory_microservice-redis-1",
+    port=6379,
     decode_responses=True
 )
 

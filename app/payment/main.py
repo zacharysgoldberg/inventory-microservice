@@ -16,22 +16,26 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
-        
-        
+
+
 @app.get('/orders/{pk}')
-async def get_order(pk: str):
-    return Order.get(pk)
+async def buy_order(pk: str) -> str:
+    try:
+        return Order.get(pk)
+    except:
+        msg = "Invalid Product ID"
+        return msg
 
 
 @app.post('/orders')
-async def create_order(request: Request, background_tasks: BackgroundTasks):   
-    body = await request.json() # id, quantity
-    
+async def create_order(request: Request, background_tasks: BackgroundTasks):
+    body = await request.json()  # id, quantity
+
     url = f"http://inventory:8000/products/{body['id']}"
     print(url)
     response = requests.get(url=url)
     product = response.json()
-    
+
     order = Order(
         product_id=body['id'],
         price=product['price'],
@@ -40,15 +44,14 @@ async def create_order(request: Request, background_tasks: BackgroundTasks):
         quantity=body['quantity'],
         status='pending'
     )
-    
+
     order.save()
-    
+
     # thread = Thread(target=order_completed)
     # thread.daemon = True
-    
-    # thread.start()
-    
-    background_tasks.add_task(order_completed, order)
-        
-    return order
 
+    # thread.start()
+
+    background_tasks.add_task(order_completed, order)
+
+    return order

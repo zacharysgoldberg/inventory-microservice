@@ -22,17 +22,21 @@ export const Orders = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    try {
+      await fetch("http://localhost:8001/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          quantity,
+        }),
+      });
 
-    await fetch("http://localhost:8001/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id,
-        quantity,
-      }),
-    });
-
-    setMessage("Thank you for your order!");
+      //if msg in response then setMessage(`${response}`); else:
+      setMessage("Thank you for your order!");
+    } catch {
+      setMessage("Invalid product ID or not enough inventory to meet request");
+    }
   };
 
   return (

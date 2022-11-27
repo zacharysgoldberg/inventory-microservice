@@ -11,6 +11,7 @@ app.add_middleware(
     allow_headers=['*']
 )
 
+
 @app.get('/')
 async def root():
     return {"message": "Hello"}
@@ -27,7 +28,7 @@ def format(pk: str):
 
 
 @app.get('/products')
-async def get_all_products(): 
+async def get_all_products():
     return [format(pk) for pk in Product.all_pks()]
 
 
@@ -44,5 +45,3 @@ async def get_product(pk: str):
 @app.delete('/products/{pk}')
 async def delete_product(pk: str):
     return Product.delete(pk)
-
-
