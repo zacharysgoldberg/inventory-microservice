@@ -1,7 +1,7 @@
-# Inventory-Microservice
+# B2B Inventory-Payment Microservice
 
 ## Design
-Simple microservice inventory tracking applicaiton using
+Microservice inventory tracking applicaiton using
 **FastAPI, React, Redis, and Docker**.
 
 ## Getting Started Locally
