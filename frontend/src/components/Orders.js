@@ -12,7 +12,7 @@ export const Orders = () => {
           const response = await fetch(`http://localhost:8000/products/${id}`);
           const content = await response.json();
           const price = parseFloat(content.price) * 1.2;
-          setMessage(`Your product price is $${price}`);
+          setMessage(`Your product price is $${price.toFixed(2)}`);
         }
       } catch (e) {
         setMessage("Buy your favorite product");
@@ -50,7 +50,7 @@ export const Orders = () => {
         <form onSubmit={submit}>
           <div className="row g-3">
             <div className="col-sm-6">
-              <label className="form-label">Product</label>
+              <label className="form-label">Product ID</label>
               <input
                 className="form-control"
                 onChange={(e) => setId(e.target.value)}
